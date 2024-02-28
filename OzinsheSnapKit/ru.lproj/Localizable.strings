@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  OzinsheSnapKit
+
+  Created by Serper Kurmanbek on 21.02.2024.
+  
+*/
+"MY_PROFILE" = "Мой профиль";
+"LANGUAGE" = "Язык";
+"PERSONAL_DATA" = "Личные данные";
+"CHANGE" = "Изменить";
+"CHANGE_PASSWORD" = "Изменить пароль";
+"TERMS_AND_CONDITIONS" = "Условия и положения";
+"NOTIFICATIONS" = "Уведомления";
+"DARK_MODE" = "Темный режим";
+"YOUR_NAME" = "Ваше имя";
+"BIRTH_DATE" = "Дата рождения";
+"YOUR_PHONE_NUMBER" = "Телефон";
+"SAVE_CHANGES" = "Cохранить изменения";
+"YOUR_EMAIL" = "Введите ваш email";
+"YOUR_PASSWORD" = "Введите пароль";
+"ENTRY_HELLO_LABEL" = "Привет!";
+"ENTER_YOUR_ACCOUNT" = "Войдите в аккаунт";
+"PASSWORD" = "Пароль";
+"SIGN_IN" = "Войти";
+"FORGOT_PASSWORD" = "Забыли пароль?";
+"CREATE_ACCOUNT" = "У вас нет аккаунта?";
+"CREATE_ACCOUNT_BUTTON" = "Регистрация";
+"FILL_IN_DETAILS" = "Заполните детали";
+"REPEAT_PASSWORD" = "Повторите пароль";
+"YOU_ALREADY_HAVE_ACCOUNT" = "У вас уже есть аккаунт?";
+"ENTER" = "Войти";
+"EXIT" = "Выход";
+"EXIT_CONFIRMATION" = "Вы уверены, что хотите выйти?";
+"YES" = "Да";
+"NO" = "Нет";
+"SAVE_CHANGES" = "Сохранить изменения";
+"ADD_TO_FAVORITE" = "Добавить в избранное";
+"SHARE" = "Поделиться";
+"DIRECTOR" = "Режиссер";
+"PRODUCER" = "Продюссер";
+"READ_MORE" = "Подробнее";
+"DEPARTMENTS" = "Разделы";
+"SCREENSHOT" = "Скриншоты";
+"CATEGORIES" = "Категории";
+"SEARCH" = "Поиск";
+"HIDE" = "Скрыть";
+"SEARCHING_RESULTS" = "Результаты поиска";
+"SHOW_ALL_MOVIES" = "Показать всё";
+"FIRST_SERIES" = "1-ая серия";
+"FIRST_SEASON" = "1 сезон";
+"EITHER" = "Или";
+"ENTER_WITH_APPLE" = "Зарегестрируйтесь с помощью Apple-ID";
+"ENTER_WITH_GOOGLE" = "Зарегестрируйтесь с помощью Google";
+"SKIP" = "Пропустить";
+"NEXT" = "Далее";

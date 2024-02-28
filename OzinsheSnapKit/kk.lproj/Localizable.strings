@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  OzinsheSnapKit
+
+  Created by Serper Kurmanbek on 21.02.2024.
+  
+*/
+"MY_PROFILE" = "Менің профилім";
+"LANGUAGE" = "Тіл";
+"PERSONAL_DATA" = "Жеке деректер";
+"CHANGE" = "Өңдеу";
+"CHANGE_PASSWORD" = "Құпия сөзді өзгерту";
+"TERMS_AND_CONDITIONS" = "Ережелер мен шарттар";
+"NOTIFICATIONS" = "Хабарландырулар";
+"DARK_MODE" = "Қараңғы режим";
+"YOUR_NAME" = "Сіздің атыңыз";
+"BIRTH_DATE" = "Туылған күні";
+"YOUR_PHONE_NUMBER" = "Телефон";
+"SAVE_CHANGES" = "Өзгерістерді сақтау";
+"YOUR_EMAIL" = "Сіздің email";
+"YOUR_PASSWORD" = "Сіздің құпия сөзіңіз";
+"ENTRY_HELLO_LABEL" = "Сәлем";
+"ENTER_YOUR_ACCOUNT" = "Аккаунтқа кіріңіз";
+"PASSWORD" = "Құпия сөз";
+"SIGN_IN" = "Кіру";
+"FORGOT_PASSWORD" = "Құпия сөзді ұмыттыңыз ба?";
+"CREATE_ACCOUNT" = "Аккаунтыныз жоқ па?";
+"CREATE_ACCOUNT_BUTTON" = "Тіркелу";
+"FILL_IN_DETAILS" = "Деректерді толтырыңыз";
+"REPEAT_PASSWORD" = "Құпия сөзді қайталаңыз";
+"YOU_ALREADY_HAVE_ACCOUNT" = "Сізде аккаунт бар ма?";
+"ENTER" = "Кіру";
+"EXIT" = "Шығу";
+"EXIT_CONFIRMATION" = "Сіз шынымен аккаунтыныздан шыгасызба?";
+"YES" = "Иә";
+"NO" = "Жоқ";
+"SAVE_CHANGES" = "Өзгерістерді сақтау";
+"ADD_TO_FAVORITE" = "Тізімге қосу";
+"SHARE" = "Бөлісу";
+"DIRECTOR" = "Режиссер";
+"PRODUCER" = "Продюссер";
+"READ_MORE" = "Толығырақ";
+"DEPARTMENTS" = "Бөлімдер";
+"SCREENSHOT" = "Скриншоттар";
+"CATEGORIES" = "Санаттар";
+"SEARCH" = "Іздеу";
+"HIDE" = "Жасыру";
+"SEARCHING_RESULTS" = "Іздеу нәтижелері";
+"SHOW_ALL_MOVIES" = "Барлығы";
+"FIRST_SERIES" = "1 -ші бөлім";
+"FIRST_SEASON" = "1 сезон";
+"ELSE" = "Немесе";
+"ENTER_WITH_APPLE" = "Apple ID-мен тіркеліңіз";
+"ENTER_WITH_GOOGLE" = "Google-мен тіркеліңіз";
+"SKIP" = "Өткізу";
+"NEXT" = "Әрі қарай";
