@@ -7,18 +7,19 @@
 
 import UIKit
 import SnapKit
+import Localize_Swift
 
 class OnboadringViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
     var onboardingItems: [OnboardingItem] = [
-        OnboardingItem(title: "ÖZINŞE-ге қош келдің!",
-                       subtitle: "Фильмдер, телехикаялар, ситкомдар, анимациялық жобалар, телебағдарламалар мен реалити-шоулар, аниме және тағы басқалары",
+        OnboardingItem(title: "WELCOME_TO_ÖZINŞE".localized(),
+                       subtitle: "ONBOARDING_SUBTITLE_TEXT".localized(),
                        image: UIImage(named: "firstSlide")! ),
-        OnboardingItem(title: "ÖZINŞE-ге қош келдің!",
-                       subtitle: "Кез келген құрылғыдан қара Сүйікті фильміңді  қосымша төлемсіз телефоннан, планшеттен, ноутбуктан қара",
+        OnboardingItem(title: "WELCOME_TO_ÖZINŞE".localized(),
+                       subtitle: "ONBOARDING_SUBTITLE_TEXT2".localized(),
                        image: UIImage(named: "secondSlide")!),
-        OnboardingItem(title: "ÖZINŞE-ге қош келдің!",
-                       subtitle: "Тіркелу оңай. Қазір тіркел де қалаған фильміңе қол жеткіз",
+        OnboardingItem(title: "WELCOME_TO_ÖZINŞE".localized(),
+                       subtitle: "ONBOARDING_SUBTITLE_TEXT3".localized(),
                        image: UIImage(named: "thirdSlide")!)]
     
     lazy var collectionView: UICollectionView = {
@@ -30,7 +31,6 @@ class OnboadringViewController: UIViewController, UICollectionViewDataSource, UI
         layout.itemSize = view.bounds.size
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor(named: " #FFFFFF - #121827")
@@ -40,8 +40,7 @@ class OnboadringViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.bounces = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(OnboardingCell.self,forCellWithReuseIdentifier: "Cell")
-                
-                return collectionView
+        return collectionView
     }()
     
     let skipButton: UIButton = {
@@ -54,7 +53,6 @@ class OnboadringViewController: UIViewController, UICollectionViewDataSource, UI
         skipButton.contentEdgeInsets.right = 16.0
         skipButton.contentEdgeInsets.left = 16.0
         skipButton.addTarget(self, action: #selector(skipOnboarding), for: .touchDown)
-        
         return skipButton
     }()
     
@@ -66,7 +64,6 @@ class OnboadringViewController: UIViewController, UICollectionViewDataSource, UI
         skipButton2.setTitleColor(.white, for: .normal)
         skipButton2.layer.cornerRadius = 12
         skipButton2.addTarget(self, action: #selector(skipOnboarding), for: .touchDown)
-        
         return skipButton2
     }()
     
@@ -77,10 +74,8 @@ class OnboadringViewController: UIViewController, UICollectionViewDataSource, UI
         pageControl.currentPageIndicatorTintColor = UIColor(named: "#B376F7")
         pageControl.numberOfPages = onboardingItems.count
         pageControl.currentPage = 0
-        
         return pageControl
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +90,45 @@ class OnboadringViewController: UIViewController, UICollectionViewDataSource, UI
     override func viewWillAppear(_ animated: Bool) {
           navigationController?.navigationBar.isHidden = true
       }
+    
+//  MARK: - CollectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return onboardingItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OnboardingCell
+        
+        cell.setData(image: onboardingItems[indexPath.row].image, title: onboardingItems[indexPath.row].title, subtitle: onboardingItems[indexPath.row].subtitle)
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+       if indexPath.row == 2 {
+           skipButton2.isHidden = false
+           skipButton.isHidden = true
+       } else {
+           skipButton2.isHidden = true
+           skipButton.isHidden = false
+       }
+   }
+}
+// MARK: - Extension
+extension OnboadringViewController{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+      let offSet = scrollView.contentOffset.x
+      let width = scrollView.frame.width
+      let currentIndex = Int(round(offSet/width))
+      
+       pageControl.currentPage = currentIndex
+    }
+    
+    @objc func skipOnboarding(){
+        let logInVC = LogInViewController()
+        navigationController?.pushViewController(logInVC, animated: true)
+    }
     
     func setupConstrains(){
         collectionView.snp.makeConstraints { make in
@@ -111,48 +145,11 @@ class OnboadringViewController: UIViewController, UICollectionViewDataSource, UI
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(adaptiveSize(for: 118))
             make.horizontalEdges.equalToSuperview()
         }
-        
         skipButton2.snp.makeConstraints { make in
             make.top.equalTo(pageControl.snp.bottom).offset(adaptiveSize(for: 24))
             make.height.equalTo(adaptiveSize(for: 56))
             make.horizontalEdges.equalToSuperview().inset(adaptiveSize(for: 24))
         }
     }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return onboardingItems.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OnboardingCell
-        
-        cell.setData(image: onboardingItems[indexPath.row].image, title: onboardingItems[indexPath.row].title, subtitle: onboardingItems[indexPath.row].subtitle)
-        
-        return cell
-    }
-func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-       if indexPath.row == 2 {
-           skipButton2.isHidden = false
-           skipButton.isHidden = true
-       } else {
-           skipButton2.isHidden = true
-           skipButton.isHidden = false
-       }
-   }
-
-   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-     let offSet = scrollView.contentOffset.x
-     let width = scrollView.frame.width
-     let currentIndex = Int(round(offSet/width))
-     
-      pageControl.currentPage = currentIndex
-   }
-   
-   @objc func skipOnboarding(){
-       let logInVC = LogInViewController()
-       navigationController?.pushViewController(logInVC, animated: true)
-   }
-    
-   
 }
 

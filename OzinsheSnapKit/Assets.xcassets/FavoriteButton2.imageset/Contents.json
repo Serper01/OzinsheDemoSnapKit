@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "FavoriteButton2.png",
+      "filename" : "FavoriteButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "FavoriteButton2@2x.png",
+      "filename" : "FavoriteButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "FavoriteButton2@3x.png",
+      "filename" : "FavoriteButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

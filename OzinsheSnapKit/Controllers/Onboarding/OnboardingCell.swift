@@ -14,9 +14,7 @@ class OnboardingCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        
         return imageView
-        
     }()
     
     let titleLabel: UILabel = {
@@ -24,7 +22,7 @@ class OnboardingCell: UICollectionViewCell {
         titleLabel.font = UIFont(name: "SFProDisplay-Bold", size: 24)
         titleLabel.textColor = UIColor(named: "#111827 - #FFFFFF")
         titleLabel.textAlignment = .center
-        
+        titleLabel.numberOfLines = 0
         return titleLabel
     }()
     
@@ -34,10 +32,8 @@ class OnboardingCell: UICollectionViewCell {
         subtitleLabel.textColor = UIColor(named: "#9CA3AF")
         subtitleLabel.textAlignment = .center
         subtitleLabel.numberOfLines = 0
-        
         return subtitleLabel
     }()
-    
     
     override init(frame: CGRect){
         super.init(frame:frame)
@@ -52,6 +48,10 @@ class OnboardingCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+//MARK: -Extension
+extension OnboardingCell{
     
     func setupConstraints() {
         backgroundImageView.snp.makeConstraints { make in

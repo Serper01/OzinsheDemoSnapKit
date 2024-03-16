@@ -14,36 +14,28 @@ import Localize_Swift
 import SVProgressHUD
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
-    
-    
+
+    //MARK: - UI Elements
     let titleLabel: UILabel = {
         var titleLabel = UILabel()
-        
         titleLabel.text = "ENTRY_HELLO_LABEL".localized()
         titleLabel.font = UIFont(name: "SFProDisplay-Bold", size: 24)
         titleLabel.textColor = UIColor(named: "#111827 - #FFFFFF")
-        
         return titleLabel
     }()
     
     let subTitleLabel: UILabel = {
         var subTitleLabel = UILabel()
-        
         subTitleLabel.text = "ENTER_YOUR_ACCOUNT".localized()
         subTitleLabel.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         subTitleLabel.textColor = UIColor(named: "#6B7280 - #9CA3AF")
-        
         return subTitleLabel
-        
     }()
     
     lazy var formStackView: UIStackView = {
         let stackView = UIStackView()
-        
         stackView.axis = .vertical
         stackView.spacing = 16
-        
-        
         return stackView
     }()
     
@@ -55,7 +47,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         emailTextField.textField.textContentType = .emailAddress
         emailTextField.textField.iconImageView.image = UIImage(named: "EmailImage")
         emailTextField.textField.autocapitalizationType = .none
-        
         return emailTextField
     }()
     
@@ -68,50 +59,42 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.textField.showButton.isHidden = false
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.autocapitalizationType = .none
-        
         return passwordTextField
     }()
     
     let forgotPasswordButton: UIButton = {
         var forgotPasswordButton = UIButton()
-        
         forgotPasswordButton.setTitle("FORGOT_PASSWORD".localized(), for: .normal)
         forgotPasswordButton.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         forgotPasswordButton.setTitleColor(UIColor(named: "#B376F7"), for: .normal)
         forgotPasswordButton.contentHorizontalAlignment = .trailing
-        
         return forgotPasswordButton
     }()
     
     let loginButton: UIButton = {
         var loginButton = UIButton()
-        
         loginButton.setTitle("SIGN_IN".localized(), for: .normal )
         loginButton.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         loginButton.layer.cornerRadius = 12
         loginButton.backgroundColor = UIColor(named: "#7E2DFC")
         loginButton.tintColor = .white
         loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
-        
         return loginButton
     }()
+    
     let registerView: UIStackView = {
         let registerView = UIStackView()
         registerView.axis = .horizontal
         registerView.spacing = 4
         registerView.alignment = .center
-        
-        
         return registerView
     }()
-    
     
     let registerLabel = {
         let registerLabel = UILabel()
         registerLabel.text = "CREATE_ACCOUNT".localized()
         registerLabel.font = UIFont(name: "SFProDisplay-Regular", size: 14)
         registerLabel.textColor = UIColor(named: "#6B7280 - #9CA3AF")
-        
         return registerLabel
     }()
     
@@ -121,18 +104,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         registerButton.setTitleColor(UIColor(named: "#B376F7"), for: .normal)
         registerButton.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         registerButton.addTarget(self, action: #selector(registration), for: .touchUpInside)
-        
         return registerButton
     }()
+    
     let label: UILabel = {
         var label = UILabel()
         label.text = "ELSE".localized()
         label.textColor = UIColor(named: "#9CA3AF")
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         label.textAlignment = .center
-        
         return label
     }()
+    
     let button:UIButton = {
         var button = UIButton()
         button.setTitle("ENTER_WITH_APPLE".localized(), for: .normal)
@@ -143,8 +126,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 1.0
         button.titleLabel?.textAlignment = .center
+        button.titleLabel?.numberOfLines = 2
         return button
     }()
+    
     let appleIconView:UIImageView = {
         var appleIcon = UIImageView()
         appleIcon.image = UIImage(named: "AppleLogo")
@@ -161,15 +146,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         googleButton.layer.cornerRadius = 12
         googleButton.layer.borderWidth = 1.0
         googleButton.titleLabel?.textAlignment = .center
-        
+        googleButton.titleLabel?.numberOfLines = 2
         return googleButton
     }()
+    
     let googleImageView: UIImageView = {
         var googleImageVIew = UIImageView()
         googleImageVIew.image = UIImage(named: "GoogleLogo")
         return googleImageVIew
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -189,72 +174,55 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(appleIconView)
         view.addSubview(googleButton)
         view.addSubview(googleImageView)
-        
         setupConstraints()
-        
     }
+}
+
+// MARK: - Extension, @objc funcs, func startApp, SetupConstraints
+extension LogInViewController {
     
-        @objc func login() {
-            let email = emailTextField.textField.text!
-            let password = passwordTextField.textField.text!
+    @objc func login() {
+        let email = emailTextField.textField.text!
+        let password = passwordTextField.textField.text!
+        
+//        SVProgressHUD.show()
+        let parameters = ["email": email,"password": password]
+        AF.request(Urls.SIGN_IN_URL, method: .post, parameters: parameters,encoding: JSONEncoding.default).responseData{ [self] response in
             
-            guard let email = emailTextField.textField.text,
-                  !email.isEmpty else {
-                emailTextField.error = "Қате формат"
-                return
+            SVProgressHUD.dismiss()
+            var resultString = ""
+            if let data = response.data {
+                resultString = String(data:data,encoding: .utf8)!
+                print (resultString)
             }
             
-            guard let password = passwordTextField.textField.text,
-                  !password.isEmpty else {
-                passwordTextField.error = "Қате формат"
-                return
-            }
-            
-            
-            SVProgressHUD.show()
-            
-            
-            let parameters = ["email": email,"password": password]
-            AF.request(Urls.SIGN_IN_URL, method: .post, parameters: parameters,encoding: JSONEncoding.default).responseData{ [self] response in
+            if response.response?.statusCode == 200 {
+                let json = JSON(response.data!)
+                print ("JSON: \(json)")
                 
-                SVProgressHUD.dismiss()
-                var resultString = ""
-                if let data = response.data {
-                    resultString = String(data:data,encoding: .utf8)!
-                    print (resultString)
-                }
-                
-                if response.response?.statusCode == 200 {
-                    let json = JSON(response.data!)
-                    print ("JSON: \(json)")
+                if let token = json["accessToken"].string {
+                    Storage.sharedInstance.accessToken = token
+                    UserDefaults.standard.set(token,forKey: "accessToken")
+                    UserDefaults.standard.set(email, forKey: "email")
+                    startApp(self)
                     
-                    if let token = json["accessToken"].string {
-                        Storage.sharedInstance.accessToken = token
-                        UserDefaults.standard.set(token,forKey: "accessToken")
-                        UserDefaults.standard.set(email, forKey: "email")
-                        startApp(self)
-                        
-                    }
-                    else {
-                        SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
-                    }
-                } else {
-                    var ErrorString = "CONNECTION_ERROR".localized()
-                    if let sCode = response .response?.statusCode {
-                        ErrorString = ErrorString + "\(sCode)"
-                    }
-                    ErrorString = ErrorString + "\(resultString)"
-                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
                 }
-                
+                else {
+                    self.emailTextField.error = "asczxc"
+                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                }
+            } else {
+                self.emailTextField.error = "WRONG_FORMAT".localized()
+                var ErrorString = "CONNECTION_ERROR".localized()
+                if let sCode = response .response?.statusCode {
+                    ErrorString = ErrorString + "\(sCode)"
+                }
+                ErrorString = ErrorString + "\(resultString)"
+//                SVProgressHUD.showError(withStatus: "\(ErrorString)")
             }
             
         }
-    
-    func startApp(_ viewController: UIViewController){
-        let tabBarVC = TabBarController()
-        tabBarVC.modalPresentationStyle = .fullScreen
-        viewController.present(tabBarVC, animated: true)
+        
     }
     
     @objc func registration() {
@@ -262,8 +230,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         navigationController?.pushViewController(registrationVC, animated: true)
     }
     
-    
-    
+    func startApp(_ viewController: UIViewController){
+        let tabBarVC = TabBarController()
+        tabBarVC.modalPresentationStyle = .fullScreen
+        viewController.present(tabBarVC, animated: true)
+    }
     
     
     func setupConstraints() {
@@ -282,20 +253,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             make.horizontalEdges.equalToSuperview().inset(24)
             
         }
-        //        emailTextField.snp.makeConstraints { make in
-        //            make.top.equalTo(subTitleLabel.snp.bottom).offset(29)
-        //            make.horizontalEdges.equalToSuperview().inset(24)
-        //        }
-        //        passwordTextField.snp.makeConstraints { make in
-        //            make.top.equalTo(emailTextField.snp.bottom).offset(13)
-        //            make.horizontalEdges.equalToSuperview().inset(24)
-        //        }
-        //
-        //         forgotPasswordButton.snp.makeConstraints { make in
-        //            make.right.equalToSuperview().inset(24)
-        //            make.top.equalTo(formStackView.snp.bottom).offset(17)
-        //        }
-        //
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(formStackView.snp.bottom).offset(40)
             make.horizontalEdges.equalToSuperview().inset(24)
@@ -317,31 +274,19 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             
         }
         appleIconView.snp.makeConstraints { make in
-            make.left.equalTo(button).inset(69.5)
+            make.left.equalTo(button).inset(adaptiveSize(for: 69.5))
             make.centerY.equalTo(button)
             make.size.equalTo(16)
         }
         googleButton.snp.makeConstraints { make in
-            make.top.equalTo(button.snp.bottom).offset(8)
-            make.horizontalEdges.equalToSuperview().inset(24)
+            make.top.equalTo(button.snp.bottom).offset(adaptiveSize(for:8))
+            make.horizontalEdges.equalToSuperview().inset(adaptiveSize(for:24))
             make.height.equalTo(56)
-            //            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(27)
         }
         googleImageView.snp.makeConstraints { make in
-            make.left.equalTo(googleButton).inset(74)
+            make.left.equalTo(googleButton).inset(adaptiveSize(for: 74))
             make.centerY.equalTo(googleButton)
             make.size.equalTo(16)
-            //            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(27)
         }
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

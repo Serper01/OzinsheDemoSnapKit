@@ -5,6 +5,36 @@
 //  Created by Serper Kurmanbek on 19.02.2024.
 //
 
+
+
+//import UIKit
+//
+//class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+//
+//    var window: UIWindow?
+//
+//    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//
+//        let accessToken = UserDefaults.standard.string(forKey: "accessToken")
+//
+//        if let accessToken = accessToken {
+//            // Пользователь вошел в систему, открываем главный экран
+//            let tabBarController = TabBarController() // Создайте TabBarViewController здесь
+//            window = UIWindow(windowScene: windowScene)
+//            window?.rootViewController = tabBarController
+//        } else {
+//            // У пользователя нет токена, открываем экран входа
+//            let loginViewController = LogInViewController() // Создайте LoginViewController здесь
+//            window = UIWindow(windowScene: windowScene)
+//            window?.rootViewController = loginViewController
+//            
+//        }
+//        window?.makeKeyAndVisible()
+//    }
+//}
+
+
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -19,7 +49,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootVC = CustomNavigationController(rootViewController: OnboadringViewController())
         window?.rootViewController = rootVC
         window?.makeKeyAndVisible()
-    }
+        
+    if let accessToken = UserDefaults.standard.string(forKey: "accessToken"){
+        Storage.sharedInstance.accessToken = accessToken
+        
+        let viewController = TabBarController()
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
+   }
+}
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

@@ -23,6 +23,7 @@
 "ENTER_YOUR_ACCOUNT" = "Аккаунтқа кіріңіз";
 "PASSWORD" = "Құпия сөз";
 "SIGN_IN" = "Кіру";
+"PLAY" = "Қарау";
 "FORGOT_PASSWORD" = "Құпия сөзді ұмыттыңыз ба?";
 "CREATE_ACCOUNT" = "Аккаунтыныз жоқ па?";
 "CREATE_ACCOUNT_BUTTON" = "Тіркелу";
@@ -37,10 +38,10 @@
 "SAVE_CHANGES" = "Өзгерістерді сақтау";
 "ADD_TO_FAVORITE" = "Тізімге қосу";
 "SHARE" = "Бөлісу";
-"DIRECTOR" = "Режиссер";
-"PRODUCER" = "Продюссер";
+"DIRECTOR:" = "Режиссер:";
+"PRODUCER" = "Продюссер:";
 "READ_MORE" = "Толығырақ";
-"DEPARTMENTS" = "Бөлімдер";
+"SECTIONS" = "Бөлімдер";
 "SCREENSHOT" = "Скриншоттар";
 "CATEGORIES" = "Санаттар";
 "SEARCH" = "Іздеу";
@@ -54,3 +55,14 @@
 "ENTER_WITH_GOOGLE" = "Google-мен тіркеліңіз";
 "SKIP" = "Өткізу";
 "NEXT" = "Әрі қарай";
+"CONTINUE_WATCHING" = "Қарауды жалғастырыңыз";
+"SIMILAR_SERIES" = "Ұқсас телехикаялар";
+"FAVORITE" = "Тізім";
+"TITLE" = "Профиль";
+"WELCOME_TO_ÖZINŞE" = "ÖZINŞE-ге қош келдің!";
+"ONBOARDING_SUBTITLE_TEXT" = "Фильмдер, телехикаялар, ситкомдар, анимациялық жобалар, телебағдарламалар мен реалити-шоулар, аниме және тағы басқалары.";
+"ONBOARDING_SUBTITLE_TEXT2" = "Кез келген құрылғыдан қара Сүйікті фильміңді  қосымша төлемсіз телефоннан, планшеттен, ноутбуктан қара";
+"ONBOARDING_SUBTITLE_TEXT3" = "Тіркелу оңай. Қазір тіркел де қалаған фильміңе қол жеткіз";
+"WRONG_FORMAT" = "Қате формат";
+"PASSWORDS_MISSMATCH!" = "Құпия сөз сәйкес келмеді";
+"ELSE" = "Немесе";

@@ -11,6 +11,8 @@ import SnapKit
 
 class TextFieldView: UIView {
     
+    var errorLabelTopConstraint: Constraint?
+    
     var error: String? {
         didSet {
             errorLabel.text = error
@@ -28,13 +30,13 @@ class TextFieldView: UIView {
         return titleLabel
     }()
     
-   let textField: TextField = {
+    let textField: TextField = {
         let textField = TextField()
-    
+        
         return textField
     }()
     
-   let  errorLabel: UILabel = {
+    let  errorLabel: UILabel = {
         let label = UILabel()
         
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
@@ -66,50 +68,26 @@ extension TextFieldView {
         titleLabel.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
         }
-        
         textField.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(6)
             make.horizontalEdges.equalToSuperview()
-            make.bottom.equalToSuperview()
         }
-        
         errorLabel.snp.makeConstraints { make in
-            make.top.equalTo(textField.snp.bottom)
+            errorLabelTopConstraint = make.top.equalTo(textField.snp.bottom).constraint
+            make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }
     
     private func setupError() {
         if error != nil {
-            textField.layer.borderColor = UIColor(named: "#E5EBF0 - #374151")?.cgColor
+            textField.layer.borderColor = UIColor(named: "#FF402B")!.cgColor
             
-            errorLabel.snp.remakeConstraints { make in
-                make.top.equalTo(textField.snp.bottom).offset(16)
-                make.bottom.equalToSuperview()
-            }
+            errorLabelTopConstraint?.update(offset: 16)
         } else {
-            textField.layer.borderColor = UIColor(named: "#FF402B")?.cgColor
+            textField.layer.borderColor = UIColor(named: "#E5EBF0 - #374151")!.cgColor
             
-            errorLabel.snp.remakeConstraints { make in
-                make.top.equalTo(textField.snp.bottom)
-                make.bottom.equalToSuperview()
-            }
+            errorLabelTopConstraint?.update(offset: 0)
         }
     }
 }
-
-//extension TextFieldView {
-//    @objc
-//    private func editingChanged() {
-//        error = nil
-//    }
-//}
-/*
-// Only override draw() if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func draw(_ rect: CGRect) {
-    // Drawing code
-}
-*/
-
-

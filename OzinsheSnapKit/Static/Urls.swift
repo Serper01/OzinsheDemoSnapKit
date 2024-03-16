@@ -23,5 +23,10 @@ class Urls {
     static let GET_GENRES = BASE_URL + "genres"
     static let GET_AGES = BASE_URL + "category-ages"
     static let GET_SEASONS = BASE_URL + "seasons/"
+    static let GET_SIMILAR = BASE_URL + "movies/similar/"
+    static let GET_SCREENSHOTS = BASE_URL + "screenshots/"
+    static let PROFILE_UPDATE_URL = BASE_URL + "user/profile/"
+    static let PROFILE_GET_URL = BASE_URL + "user/profile"
+    static let CHANGE_PASSWORD_URL = BASE_URL + "user/profile/changePassword"
     
 }
